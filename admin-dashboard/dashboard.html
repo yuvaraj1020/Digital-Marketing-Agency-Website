@@ -93,12 +93,18 @@
       }
 
       // Aggregate services
-      const counts = {"Web Development":0, "Social Media Marketing":0, "Ads Management":0, "Video Editing":0, "Graphic Design":0, "Marketing Strategy":0};
+      const counts = {"Web Development":0, "Social Media Marketing":0, "Ads Management":0, "Video Editing":0, "Graphic Design":0, "Marketing Strategy":0, "Resume Builder":0, "Personal Portfolio":0};
       leads.forEach(r => {
         let sc = r.service_interested;
         // Normalize any test data
         if(sc==='web') sc='Web Development';
+        if(sc==='social') sc='Social Media Marketing';
         if(sc==='ads') sc='Ads Management';
+        if(sc==='video') sc='Video Editing';
+        if(sc==='graphic') sc='Graphic Design';
+        if(sc==='strategy') sc='Marketing Strategy';
+        if(sc==='resume') sc='Resume Builder';
+        if(sc==='portfolio') sc='Personal Portfolio';
         if(counts[sc] !== undefined) counts[sc]++;
       });
       document.getElementById('services-breakdown').innerHTML = Object.keys(counts).map(k=>`<tr><td>${k}</td><td style="color:var(--accent);">${counts[k] === 0 ? '—' : counts[k]}</td></tr>`).join('');
