@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — BhAAi Fans Digital AA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+  <style>
+    .contact-grid { display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;margin-top:4rem; }
+    .contact-info h3 { font-family:var(--font-display);font-size:2rem;color:var(--white);margin-bottom:1rem; }
+    .contact-info p { font-size:0.9rem;color:var(--gray-4);line-height:1.8;margin-bottom:2rem; }
+    .contact-detail { display:flex;flex-direction:column;gap:1.2rem;margin-top:2rem; }
+    .contact-detail a { font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.08em;color:var(--gray-4);text-decoration:none;transition:color 0.2s;display:flex;align-items:center;gap:0.8rem; }
+    .contact-detail a:hover { color:var(--accent); }
+    .contact-detail a::before { content:'→';color:var(--accent); }
+    .form-group { margin-bottom:1.5rem;position:relative; }
+    .form-group label { display:block;font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray-4);margin-bottom:0.6rem; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width:100%;background:var(--gray-1);border:1px solid rgba(245,240,232,0.08);
+      color:var(--white);font-family:var(--font-body);font-size:0.95rem;font-weight:300;
+      padding:1rem 1.2rem;outline:none;transition:border-color 0.2s;
+      appearance:none;-webkit-appearance:none;
+    }
+    .form-group select { cursor:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat;background-position:right 1.2rem center; }
+    .form-group textarea { resize:vertical;min-height:140px; }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color:rgba(200,255,0,0.4); }
+    .form-group.error input,
+    .form-group.error textarea { border-color:rgba(255,80,80,0.5); }
+    .error-msg { font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.08em;color:#ff5050;margin-top:0.4rem;display:block; }
+    .form-row { display:grid;grid-template-columns:1fr 1fr;gap:1.2rem; }
+    .form-success { text-align:center;padding:4rem 2rem; }
+    .success-icon { font-size:2.5rem;color:var(--accent);margin-bottom:1rem; }
+    .form-success h3 { font-family:var(--font-display);font-size:2.5rem;color:var(--white);margin-bottom:0.5rem; }
+    .form-success p { color:var(--gray-4);font-size:0.95rem; }
+    .form-error-global { background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.2);color:#ff7070;font-size:0.85rem;padding:0.8rem 1rem;margin-bottom:1.5rem; }
+    @media(max-width:900px) { .contact-grid{grid-template-columns:1fr;gap:3rem;} .form-row{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <div class="nav-mobile">
+    <button class="nav-mobile-close">✕</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Studio</a>
+    <a href="portfolio.html">Works</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">BhAAi Fans<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">Studio</a></li>
+      <li><a href="portfolio.html">Works</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+    </ul>
+    <div class="nav-actions" style="display:flex; gap:1.5rem; align-items:center;">
+      <a id="nav-login-btn" href="login.html" style="font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--white); text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--white)'">Login</a>
+      <a href="contact.html" class="nav-cta">Get in touch</a>
+    </div>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-grid"></div>
+    <div class="page-header-content">
+      <div class="section-label">[ CONTACT ]</div>
+      <h1 class="section-title" style="font-size:clamp(4rem,9vw,10rem);">Get in touch.</h1>
+      <p class="section-sub">Ready to grow your brand? Tell us about your project and let's get to work.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Let's start a conversation.</h3>
+        <p>Whether you have a clear brief or just an idea, we'd love to hear from you. We'll respond within 24 hours and get a discovery call booked in.</p>
+        <div class="contact-detail">
+          <a href="mailto:hello@bhaifansdigital.com">hello@bhaifansdigital.com</a>
+          <a href="tel:+919000000000">+91 90000 00000</a>
+          <a href="#">Hyderabad, Telangana, India</a>
+          <a href="https://instagram.com" target="_blank">@bhaifansdigital</a>
+          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        </div>
+        <div style="margin-top:3rem;padding:2rem;background:var(--gray-1);border:1px solid rgba(245,240,232,0.06);">
+          <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;">Response time</div>
+          <p style="font-size:0.9rem;color:var(--gray-4);">We typically respond within 4–8 hours on weekdays. For urgent inquiries, WhatsApp us directly.</p>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <form id="contact-form" action="/api/contact" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your name *</label>
+              <input type="text" id="name" name="name" placeholder="Arjun Sharma" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email address *</label>
+              <input type="email" id="email" name="email" placeholder="arjun@brand.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" />
+            </div>
+            <div class="form-group">
+              <label for="company">Company / Brand</label>
+              <input type="text" id="company" name="company" placeholder="Your Brand Name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">Service interested in *</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option value="web">Web Development</option>
+              <option value="social">Social Media Marketing</option>
+              <option value="ads">Ads Management</option>
+              <option value="video">Video Editing</option>
+              <option value="graphic">Graphic Design</option>
+              <option value="strategy">Marketing Strategy</option>
+              <option value="multiple">Multiple Services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="budget">Budget range</label>
+            <select id="budget" name="budget">
+              <option value="" disabled selected>Select a budget range</option>
+              <option value="under25k">Under ₹25,000</option>
+              <option value="25k-50k">₹25,000 – ₹50,000</option>
+              <option value="50k-1lakh">₹50,000 – ₹1 Lakh</option>
+              <option value="1lakh+">₹1 Lakh+</option>
+              <option value="monthly">Monthly Retainer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us about your project *</label>
+            <textarea id="message" name="message" placeholder="Describe your goals, timeline, and any relevant details..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;font-size:0.8rem;padding:1.2rem;">Send message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">BhAAi Fans<span style="color:var(--accent);">.</span></a>
+        <p>Web, Marketing & Creative Solutions for Modern Brands.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="about.html">Studio</a></li>
+          <li><a href="portfolio.html">Works</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="../services/web-development.html">Web Development</a></li>
+          <li><a href="../services/social-media-marketing.html">Social Media</a></li>
+          <li><a href="../services/ads-management.html">Ads Management</a></li>
+          <li><a href="../services/video-editing.html">Video Editing</a></li>
+          <li><a href="../services/graphic-design.html">Graphic Design</a></li>
+          <li><a href="../services/marketing-strategy.html">Strategy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="mailto:hello@bhaifansdigital.com">hello@bhaifansdigital.com</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© BhAAi Fans Digital AA 2025</span>
+      <a href="index.html">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch('/auth/me');
+        if (!res.ok) {
+          window.location.href = '/login.html?redirect=/contact.html';
+        }
+      } catch (e) {
+        console.error("Auth check failed.", e);
+      }
+    });
+  </script>
+  <script>
+    // Strict Auth Redirection for Contact Form
+    fetch('/auth/me').then(res => res.json()).then(data => {
+      if (!data.authenticated || data.type === 'admin') {
+        window.location.href = 'login.html?redirect=contact.html';
+      }
+    });
+  </script>
+  <script>
+    // Authentication Check and Dynamic Navbar Update
+    fetch('/auth/me')
+      .then(res => res.json())
+      .then(data => {
+        const btn = document.getElementById('nav-login-btn');
+        if (data.authenticated) {
+          if (btn) {
+            btn.textContent = 'Logout';
+            btn.href = (data.type === 'admin') ? '/auth/logout' : '/auth/user/logout';
+          }
+        }
+      });
+  </script>
+</body>
+</html>

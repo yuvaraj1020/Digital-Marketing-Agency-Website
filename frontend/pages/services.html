@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — BhAAi Fans Digital AA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <div class="nav-mobile">
+    <button class="nav-mobile-close">✕</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Studio</a>
+    <a href="portfolio.html">Works</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">BhAAi Fans<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">Studio</a></li>
+      <li><a href="portfolio.html">Works</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+    </ul>
+    <div class="nav-actions" style="display:flex; gap:1.5rem; align-items:center;">
+      <a id="nav-login-btn" href="login.html" style="font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--white); text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--white)'">Login</a>
+      <a href="contact.html" class="nav-cta">Get in touch</a>
+    </div>
+    <button class="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-grid"></div>
+    <div class="page-header-content">
+      <div class="section-label">[ SERVICES — 06 ]</div>
+      <h1 class="section-title" style="font-size:clamp(4rem,9vw,10rem);">What we do.</h1>
+      <p class="section-sub">Six core services, one goal: making your brand grow faster and look better doing it.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="services-grid">
+      <a href="../services/web-development.html" class="service-item" style="text-decoration:none;">
+        <span class="service-num">[01]</span>
+        <div class="service-body">
+          <h3 class="service-name">Web Development</h3>
+          <p class="service-desc">Modern, fast, responsive websites and web apps — built to convert visitors and perform at scale.</p>
+          <div class="service-tags"><span>UI/UX</span><span>React</span><span>CMS</span><span>eCommerce</span></div>
+        </div>
+      </a>
+      <a href="../services/social-media-marketing.html" class="service-item" style="text-decoration:none;">
+        <span class="service-num">[02]</span>
+        <div class="service-body">
+          <h3 class="service-name">Social Media Marketing</h3>
+          <p class="service-desc">Platform-native content and community strategies that grow your following and build genuine loyalty.</p>
+          <div class="service-tags"><span>Instagram</span><span>LinkedIn</span><span>TikTok</span></div>
+        </div>
+      </a>
+      <a href="../services/ads-management.html" class="service-item" style="text-decoration:none;">
+        <span class="service-num">[03]</span>
+        <div class="service-body">
+          <h3 class="service-name">Ads Management</h3>
+          <p class="service-desc">Performance campaigns across Google, Meta and beyond — every rupee working as hard as possible.</p>
+          <div class="service-tags"><span>Google Ads</span><span>Meta Ads</span><span>Analytics</span></div>
+        </div>
+      </a>
+      <a href="../services/video-editing.html" class="service-item" style="text-decoration:none;">
+        <span class="service-num">[04]</span>
+        <div class="service-body">
+          <h3 class="service-name">Video Editing</h3>
+          <p class="service-desc">Scroll-stopping cuts for reels, ads, brand films, and everything in between — edited with intention.</p>
+          <div class="service-tags"><span>Reels</span><span>Brand Films</span><span>Motion</span></div>
+        </div>
+      </a>
+      <a href="../services/graphic-design.html" class="service-item" style="text-decoration:none;">
+        <span class="service-num">[05]</span>
+        <div class="service-body">
+          <h3 class="service-name">Graphic Design</h3>
+          <p class="service-desc">Brand identities, logos, social creatives, and marketing collateral that make your brand unforgettable.</p>
+          <div class="service-tags"><span>Branding</span><span>Logos</span><span>Print</span></div>
+        </div>
+      </a>
+      <a href="../services/marketing-strategy.html" class="service-item" style="text-decoration:none;">
+        <span class="service-num">[06]</span>
+        <div class="service-body">
+          <h3 class="service-name">Marketing Strategy</h3>
+          <p class="service-desc">Research-backed growth plans that align your marketing channels toward one clear objective: results.</p>
+          <div class="service-tags"><span>Research</span><span>Growth Plans</span><span>Consulting</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="section-label">[ GET STARTED ]</div>
+    <h2 class="section-title">Not sure where to start?</h2>
+    <p>Book a free 30-minute discovery call and we'll figure out the right approach for your brand together.</p>
+    <a href="contact.html" class="btn-dark">Book a free call →</a>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">BhAAi Fans<span style="color:var(--accent);">.</span></a>
+        <p>Web, Marketing & Creative Solutions for Modern Brands.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="about.html">Studio</a></li>
+          <li><a href="portfolio.html">Works</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="../services/web-development.html">Web Development</a></li>
+          <li><a href="../services/social-media-marketing.html">Social Media</a></li>
+          <li><a href="../services/ads-management.html">Ads Management</a></li>
+          <li><a href="../services/video-editing.html">Video Editing</a></li>
+          <li><a href="../services/graphic-design.html">Graphic Design</a></li>
+          <li><a href="../services/marketing-strategy.html">Strategy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="mailto:hello@bhaifansdigital.com">hello@bhaifansdigital.com</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© BhAAi Fans Digital AA 2025</span>
+      <a href="index.html">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+  <script>
+    // Authentication Check and Dynamic Navbar Update
+    fetch('/auth/me')
+      .then(res => res.json())
+      .then(data => {
+        const btn = document.getElementById('nav-login-btn');
+        if (data.authenticated) {
+          if (btn) {
+            btn.textContent = 'Logout';
+            btn.href = (data.type === 'admin') ? '/auth/logout' : '/auth/user/logout';
+          }
+        }
+      });
+  </script>
+</body>
+</html>

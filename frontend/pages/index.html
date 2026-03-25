@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BhAAi Fans Digital AA — Web, Marketing & Creative Solutions</title>
+  <meta name="description" content="BhAAi Fans Digital AA — Web, Marketing & Creative Solutions for Modern Brands." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+</head>
+<body>
+
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Mobile Nav -->
+  <div class="nav-mobile">
+    <button class="nav-mobile-close">✕</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">Studio</a>
+    <a href="portfolio.html">Works</a>
+    <a href="services.html">Services</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="nav-logo">BhAAi Fans<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="about.html">Studio</a></li>
+      <li><a href="portfolio.html">Works</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+    </ul>
+    <div class="nav-actions" style="display:flex; gap:1.5rem; align-items:center;">
+      <a id="nav-login-btn" href="login.html" style="font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--white); text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--white)'">Login</a>
+      <a href="contact.html" class="nav-cta">Get in touch</a>
+    </div>
+    <button class="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-noise"></div>
+    <div class="hero-year">©2025</div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-eyebrow">EST 2020 — Digital Agency</div>
+        <h1 class="hero-title">
+          BhAAi<br>
+          Fans<br>
+          <span class="line-accent">Digital.</span>
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-tagline">Web, Marketing & Creative Solutions for Modern Brands.</p>
+          <div class="hero-actions">
+            <a href="portfolio.html" class="btn-primary">View our work →</a>
+            <a href="contact.html" class="btn-ghost">Start a project</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-quote-container" style="margin-bottom:2rem; padding:1.5rem; border-left:4px solid var(--accent); background:rgba(0,0,0,0.6); border-radius:4px; backdrop-filter:blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <p id="dynamic-quote" style="font-family:var(--font-mono); font-size:0.95rem; line-height:1.6; color:var(--white); font-style:italic;">Loading inspiration...</p>
+        </div>
+        <div class="hero-stats-panel" style="background:rgba(26,26,26,0.8); border:1px solid rgba(245,240,232,0.1); padding:2rem; border-radius:8px; backdrop-filter:blur(10px);">
+          <h3 style="font-family:var(--font-display); font-size:2rem; letter-spacing:0.02em; margin-bottom:0.5rem; color:var(--white);">Accelerate your growth.</h3>
+          <p style="font-size:0.9rem; color:var(--gray-4); line-height:1.6; margin-bottom:1.5rem;">We blend data-driven strategies with bold creativity to build campaigns that demand attention and convert audiences instantly.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; padding-bottom:1.5rem; border-bottom:1px solid rgba(245,240,232,0.1); margin-bottom:1.5rem;">
+            <div>
+              <div style="font-family:var(--font-display); font-size:2.5rem; line-height:1; color:var(--accent);">150+</div>
+              <div style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.1em; color:var(--gray-4); margin-top:0.4rem; text-transform:uppercase;">Projects Delivered</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display); font-size:2.5rem; line-height:1; color:var(--accent);">99%</div>
+              <div style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.1em; color:var(--gray-4); margin-top:0.4rem; text-transform:uppercase;">Client Satisfaction</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display); font-size:2.5rem; line-height:1; color:var(--accent);">12h</div>
+              <div style="font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.1em; color:var(--gray-4); margin-top:0.4rem; text-transform:uppercase;">Avg Response Time</div>
+            </div>
+          </div>
+          <a href="contact.html" class="btn-primary" style="width:100%; justify-content:center;">Get your free proposal ⚡</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="dot"></span>Web Development</span>
+      <span class="marquee-item"><span class="dot"></span>Social Media Marketing</span>
+      <span class="marquee-item"><span class="dot"></span>Ads Management</span>
+      <span class="marquee-item"><span class="dot"></span>Video Editing</span>
+      <span class="marquee-item"><span class="dot"></span>Graphic Design</span>
+      <span class="marquee-item"><span class="dot"></span>Marketing Strategy</span>
+      <span class="marquee-item"><span class="dot"></span>Modern Brands</span>
+      <span class="marquee-item"><span class="dot"></span>Bold Creativity</span>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="studio">
+    <div class="section-label reveal">[ ABOUT ]</div>
+    <h2 class="section-title reveal reveal-delay-1">Who we are.</h2>
+    <div class="about-grid">
+      <div class="about-image-wrap reveal">
+        <img src="{{ url_for('static', filename='images/team.jpg') }}" alt="BhAAi Fans Digital AA Team" onerror="this.style.background='#1a1a1a';this.style.aspectRatio='4/5';this.removeAttribute('src');" />
+      </div>
+      <div class="about-text reveal reveal-delay-1">
+        <h3>We're not here to blend in. We build digital experiences that demand attention.</h3>
+        <p class="section-sub">At BhAAi Fans Digital AA, we combine strategic thinking with bold creativity to help modern brands grow their presence, convert audiences, and lead their markets.</p>
+        <ul class="about-list">
+          <li>Full-service digital marketing & web agency</li>
+          <li>Performance-driven campaigns that convert</li>
+          <li>Video & graphic content built for engagement</li>
+          <li>Strategy-first, execution-perfect approach</li>
+          <li>Dedicated team, real results</li>
+        </ul>
+        <br />
+        <a href="about.html" class="btn-ghost" style="display:inline-flex;margin-top:1rem;">Our story →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" style="padding-top:0;">
+    <div class="section-label reveal">[ SERVICES ]</div>
+    <h2 class="section-title reveal reveal-delay-1">What we do.</h2>
+    <div class="services-grid reveal">
+      <div class="service-item">
+        <span class="service-num">[01]</span>
+        <div class="service-body">
+          <h3 class="service-name">Web Development</h3>
+          <p class="service-desc">Modern, fast, responsive websites and web apps built to convert visitors into customers.</p>
+          <div class="service-tags">
+            <span>UI/UX Design</span><span>React / HTML</span><span>CMS</span><span>eCommerce</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">[02]</span>
+        <div class="service-body">
+          <h3 class="service-name">Social Media Marketing</h3>
+          <p class="service-desc">Content strategies and community management that grow your audience and build brand loyalty.</p>
+          <div class="service-tags">
+            <span>Instagram</span><span>LinkedIn</span><span>TikTok</span><span>Strategy</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">[03]</span>
+        <div class="service-body">
+          <h3 class="service-name">Ads Management</h3>
+          <p class="service-desc">Data-driven paid campaigns across Google, Meta, and beyond — maximising ROI at every rupee.</p>
+          <div class="service-tags">
+            <span>Google Ads</span><span>Meta Ads</span><span>Retargeting</span><span>Analytics</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">[04]</span>
+        <div class="service-body">
+          <h3 class="service-name">Video Editing</h3>
+          <p class="service-desc">Scroll-stopping video content for ads, reels, brand films, and social media — cut with purpose.</p>
+          <div class="service-tags">
+            <span>Reels</span><span>Brand Films</span><span>Motion Graphics</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">[05]</span>
+        <div class="service-body">
+          <h3 class="service-name">Graphic Design</h3>
+          <p class="service-desc">Logos, brand identities, marketing collateral and creative assets that make brands unforgettable.</p>
+          <div class="service-tags">
+            <span>Branding</span><span>Print</span><span>Digital Assets</span><span>Packaging</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-item">
+        <span class="service-num">[06]</span>
+        <div class="service-body">
+          <h3 class="service-name">Marketing Strategy</h3>
+          <p class="service-desc">End-to-end marketing plans built on research and data — giving your brand a clear roadmap to growth.</p>
+          <div class="service-tags">
+            <span>Market Research</span><span>Growth Plans</span><span>Consulting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Preview -->
+  <section id="works" style="padding-top:0;">
+    <div class="section-label reveal">[ WORKS — 06 ]</div>
+    <h2 class="section-title reveal reveal-delay-1">Selected Works.</h2>
+    <div class="portfolio-grid reveal">
+      <div class="portfolio-item">
+        <img src="{{ url_for('static', filename='images/portfolio/portfolio1.jpg') }}" alt="Project 1" onerror="this.style.display='none';" />
+        <div class="portfolio-overlay">
+          <h3>Resume Builder Platform</h3>
+          <div class="portfolio-tags"><span>Web Development</span><span>UI Design</span></div>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="{{ url_for('static', filename='images/portfolio/portfolio2.jpg') }}" alt="Project 2" onerror="this.style.display='none';" />
+        <div class="portfolio-overlay">
+          <h3>Portfolio Website</h3>
+          <div class="portfolio-tags"><span>Web Design</span><span>Branding</span></div>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="{{ url_for('static', filename='images/portfolio/portfolio3.jpg') }}" alt="Project 3" onerror="this.style.display='none';" />
+        <div class="portfolio-overlay">
+          <h3>E-commerce Clothing Website</h3>
+          <div class="portfolio-tags"><span>Web Development</span><span>eCommerce</span></div>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="{{ url_for('static', filename='images/portfolio/portfolio4.jpg') }}" alt="Project 4" onerror="this.style.display='none';" />
+        <div class="portfolio-overlay">
+          <h3>Digital Marketing Campaign</h3>
+          <div class="portfolio-tags"><span>Social Media</span><span>Ads</span></div>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="{{ url_for('static', filename='images/portfolio/portfolio5.jpg') }}" alt="Project 5" onerror="this.style.display='none';" />
+        <div class="portfolio-overlay">
+          <h3>Startup Landing Page</h3>
+          <div class="portfolio-tags"><span>UI/UX Design</span><span>Frontend</span></div>
+        </div>
+      </div>
+      <div class="portfolio-item">
+        <img src="{{ url_for('static', filename='images/portfolio/portfolio6.jpg') }}" alt="Project 6" onerror="this.style.display='none';" />
+        <div class="portfolio-overlay">
+          <h3>YouTube Brand Growth Strategy</h3>
+          <div class="portfolio-tags"><span>Content Marketing</span><span>Strategy</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="portfolio.html" class="btn-ghost reveal">View all projects →</a>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section style="background:var(--gray-1);padding:6rem 3rem;">
+    <div class="section-label reveal">[ WORK PROCESS ]</div>
+    <h2 class="section-title reveal reveal-delay-1">Our Creative Process.</h2>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-step-num">01</div>
+        <div class="process-step-label">[ STEP 1 ]</div>
+        <h4>Discovery Call</h4>
+        <p>We start with a conversation to understand your goals, brand story, and what success looks like for you. This is where the strategy begins.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-step-num">02</div>
+        <div class="process-step-label">[ STEP 2 ]</div>
+        <h4>Creation</h4>
+        <p>Our team designs, builds, and crafts with purpose — every asset, every line of copy, every pixel is intentional and aligned to your goals.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-step-num">03</div>
+        <div class="process-step-label">[ STEP 3 ]</div>
+        <h4>Delivery & Growth</h4>
+        <p>We deliver polished work on time and measure performance post-launch — iterating to push results further month over month.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num"><span class="counter" data-target="120" data-suffix="+">0+</span></div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num"><span class="counter" data-target="45" data-suffix="+">0+</span></div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num"><span class="counter" data-target="6" data-suffix="">0</span></div>
+        <div class="stat-label">Services Offered</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num"><span class="counter" data-target="5" data-suffix="★">0</span></div>
+        <div class="stat-label">Average Rating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section>
+    <div class="section-label reveal">[ CLIENT REVIEWS ]</div>
+    <h2 class="section-title reveal reveal-delay-1">What clients say.</h2>
+    <div class="testimonials-track">
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">"BhAAi Fans completely transformed our online presence. Our website traffic tripled and conversions followed. Exceptional team."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AR</div>
+          <div>
+            <div class="testimonial-name">Arjun Reddy</div>
+            <div class="testimonial-role">Founder, TechLaunch IN</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <p class="testimonial-text">"Our ad campaigns went from bleeding money to printing it. Their strategy team genuinely understands the Indian digital market."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">PK</div>
+          <div>
+            <div class="testimonial-name">Priya Krishnan</div>
+            <div class="testimonial-role">CMO, Velora Retail</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <p class="testimonial-text">"The video content they produced for our product launch was beyond expectations. Every frame told our story perfectly."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SM</div>
+          <div>
+            <div class="testimonial-name">Siddharth Mehta</div>
+            <div class="testimonial-role">Creative Director, Nomad Studios</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background:var(--gray-1);">
+    <div class="section-label reveal">[ FAQ ]</div>
+    <h2 class="section-title reveal reveal-delay-1">Frequently asked questions.</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-question">What services does BhAAi Fans Digital AA offer? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">We offer Web Development, Social Media Marketing, Ads Management (Google & Meta), Video Editing, Graphic Design, and full Marketing Strategy. Each service can be taken individually or bundled.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How long does a typical project take? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">It depends on scope — a website typically takes 3–6 weeks, while ongoing marketing retainers are month-to-month. We'll give you a clear timeline in our first call.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Do you work with startups or only established brands? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">Both! We love working with startups that need to build from scratch just as much as established brands looking to scale or rebrand.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What is your pricing structure? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">We have project-based and monthly retainer packages. See our <a href="pricing.html" style="color:var(--accent);">Pricing page</a> for details, or contact us for a custom quote.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How do I get started? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">Simply fill out the form on our <a href="contact.html" style="color:var(--accent);">Contact page</a> or send us an email. We'll schedule a free discovery call and take it from there.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="section-label">[ LET'S WORK TOGETHER ]</div>
+    <h2 class="section-title">Get in touch.</h2>
+    <p>Ready to grow your brand? Let's build something unforgettable together.</p>
+    <a href="contact.html" class="btn-dark">Start a project →</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">BhAAi Fans<span style="color:var(--accent);">.</span></a>
+        <p>Web, Marketing & Creative Solutions for Modern Brands.</p>
+        <p style="margin-top:1rem;font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--gray-3);">HYDERABAD, TELANGANA, IN</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="about.html">Studio</a></li>
+          <li><a href="portfolio.html">Works</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="../services/web-development.html">Web Development</a></li>
+          <li><a href="../services/social-media-marketing.html">Social Media</a></li>
+          <li><a href="../services/ads-management.html">Ads Management</a></li>
+          <li><a href="../services/video-editing.html">Video Editing</a></li>
+          <li><a href="../services/graphic-design.html">Graphic Design</a></li>
+          <li><a href="../services/marketing-strategy.html">Strategy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+          <li><a href="https://x.com" target="_blank">X (Twitter)</a></li>
+          <li><a href="mailto:hello@bhaifansdigital.com">hello@bhaifansdigital.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© BhAAi Fans Digital AA 2025</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="index.html">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('/api/quotes/random')
+        .then(response => response.json())
+        .then(data => {
+          const quoteEl = document.getElementById('dynamic-quote');
+          if(quoteEl && data.quote) {
+            quoteEl.textContent = '"' + data.quote + '"';
+          }
+        })
+        .catch(err => console.error("Error fetching quote:", err));
+    });
+  </script>
+  <script>
+    // Authentication Check and Dynamic Navbar Update
+    fetch('/auth/me')
+      .then(res => res.json())
+      .then(data => {
+        const btn = document.getElementById('nav-login-btn');
+        if (data.authenticated) {
+          if (btn) {
+            btn.textContent = 'Logout';
+            btn.href = (data.type === 'admin') ? '/auth/logout' : '/auth/user/logout';
+          }
+        }
+      });
+  </script>
+</body>
+</html>

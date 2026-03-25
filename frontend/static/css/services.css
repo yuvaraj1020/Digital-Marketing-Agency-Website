@@ -1,0 +1,49 @@
+/* Services page extra styles */
+.service-detail-hero {
+  padding: 12rem 3rem 6rem;
+  border-bottom: 1px solid rgba(245,240,232,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.service-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  padding: 6rem 3rem;
+}
+.service-detail-visual {
+  background: var(--gray-1);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 6rem;
+  color: rgba(200,255,0,0.15);
+  border: 1px solid rgba(245,240,232,0.06);
+}
+.deliverables-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+.deliverables-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--gray-4);
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(245,240,232,0.06);
+}
+.deliverables-list li::before {
+  content: '→';
+  color: var(--accent);
+  flex-shrink: 0;
+}
+@media (max-width: 900px) {
+  .service-detail-grid { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+  .service-detail-hero { padding: 9rem 2rem 4rem; }
+}

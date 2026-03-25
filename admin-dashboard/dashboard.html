@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — BhAAi Fans Digital AA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--black:#0a0a0a;--white:#f5f0e8;--accent:#c8ff00;--gray-1:#1a1a1a;--gray-2:#2a2a2a;--gray-3:#444;--gray-4:#888;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'DM Mono',monospace;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--black);color:var(--white);font-family:var(--font-body);font-size:14px;display:flex;min-height:100vh;}
+    .sidebar{width:220px;background:var(--gray-1);border-right:1px solid rgba(245,240,232,0.08);padding:2rem 1.5rem;display:flex;flex-direction:column;gap:0.4rem;flex-shrink:0;}
+    .sidebar-logo{font-family:var(--font-display);font-size:1.2rem;color:var(--white);margin-bottom:2rem;letter-spacing:0.05em;}
+    .sidebar-logo span{color:var(--accent);}
+    .sidebar a{display:flex;align-items:center;gap:0.7rem;padding:0.7rem 0.9rem;color:var(--gray-4);text-decoration:none;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;transition:all 0.2s;}
+    .sidebar a:hover,.sidebar a.active{color:var(--white);background:var(--gray-2);}
+    .sidebar a.active{border-left:2px solid var(--accent);color:var(--accent);}
+    .main{flex:1;padding:2.5rem;overflow-y:auto;}
+    .top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:2.5rem;}
+    .top-bar h1{font-family:var(--font-display);font-size:2rem;letter-spacing:0.04em;}
+    .top-bar span{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;color:var(--gray-4);}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;}
+    .stat-card{background:var(--gray-1);border:1px solid rgba(245,240,232,0.06);padding:1.5rem;border-radius:4px;}
+    .stat-card .label{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray-4);margin-bottom:0.6rem;}
+    .stat-card .value{font-family:var(--font-display);font-size:2.2rem;color:var(--white);}
+    .stat-card .value span{color:var(--accent);}
+    .stat-card .change{font-size:0.75rem;color:#4ade80;margin-top:0.3rem;}
+    .card{background:var(--gray-1);border:1px solid rgba(245,240,232,0.06);border-radius:4px;padding:1.5rem;margin-bottom:1.5rem;}
+    .card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid rgba(245,240,232,0.06);}
+    .card-header h3{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray-4);}
+    table{width:100%;border-collapse:collapse;}
+    th{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-4);text-align:left;padding:0.6rem 0.8rem;border-bottom:1px solid rgba(245,240,232,0.06);}
+    td{padding:0.75rem 0.8rem;border-bottom:1px solid rgba(245,240,232,0.04);font-size:0.85rem;color:var(--white);}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:rgba(245,240,232,0.02);}
+    .badge{display:inline-block;font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.6rem;border-radius:3px;}
+    .badge-new{background:rgba(200,255,0,0.12);color:var(--accent);}
+    .badge-progress{background:rgba(59,130,246,0.15);color:#93c5fd;}
+    .badge-done{background:rgba(74,222,128,0.12);color:#4ade80;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-logo">BhAAi<span>.</span></div>
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="clients.html">Clients</a>
+    <a href="requests.html">Requests</a>
+    <a href="/" target="_blank">View Site</a>
+  </aside>
+  <main class="main">
+    <div class="top-bar">
+      <h1>Dashboard</h1>
+      <span id="date-display"></span>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="label">Total Clients</div><div class="value"><span id="total-clients">—</span></div><div class="change">Loading...</div></div>
+      <div class="stat-card"><div class="label">New Requests</div><div class="value"><span id="new-requests">—</span></div><div class="change">This week</div></div>
+      <div class="stat-card"><div class="label">Services Offered</div><div class="value">6</div><div class="change">All active</div></div>
+      <div class="stat-card"><div class="label">Avg Rating</div><div class="value">5<span>★</span></div><div class="change">Client reviews</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><h3>Recent Requests</h3><a href="requests.html" style="font-family:var(--font-mono);font-size:0.6rem;color:var(--accent);text-decoration:none;letter-spacing:0.1em;">View all →</a></div>
+        <table>
+          <thead><tr><th>Name</th><th>Service</th><th>Status</th></tr></thead>
+          <tbody id="recent-requests">
+            <tr><td colspan="3" style="color:var(--gray-4);text-align:center;padding:2rem;">Loading requests...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Services Breakdown</h3></div>
+        <table>
+          <thead><tr><th>Service</th><th>Requests</th></tr></thead>
+          <tbody id="services-breakdown">
+            <tr><td colspan="2" style="color:var(--gray-4);text-align:center;">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <script src="dashboard.js"></script>
+  <script>
+    document.getElementById('date-display').textContent = new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    fetch('/api/leads').then(r=>r.json()).then(data=>{
+      const leads = data.leads || [];
+      document.getElementById('new-requests').textContent = leads.filter(r=>r.status==='New').length;
+      document.getElementById('total-clients').textContent = leads.length;
+      const tbody = document.getElementById('recent-requests');
+      const recent = leads.slice(0,5);
+      if(!recent.length){tbody.innerHTML='<tr><td colspan="3" style="color:var(--gray-4);text-align:center;padding:2rem;">No requests yet</td></tr>';} else {
+          tbody.innerHTML = recent.map(r=>`<tr><td>${r.name}</td><td>${r.service_interested}</td><td><span class="badge badge-${r.status==='New'?'new':'progress'}">${r.status}</span></td></tr>`).join('');
+      }
+
+      // Aggregate services
+      const counts = {"Web Development":0, "Social Media Marketing":0, "Ads Management":0, "Video Editing":0, "Graphic Design":0, "Marketing Strategy":0};
+      leads.forEach(r => {
+        let sc = r.service_interested;
+        // Normalize any test data
+        if(sc==='web') sc='Web Development';
+        if(sc==='ads') sc='Ads Management';
+        if(counts[sc] !== undefined) counts[sc]++;
+      });
+      document.getElementById('services-breakdown').innerHTML = Object.keys(counts).map(k=>`<tr><td>${k}</td><td style="color:var(--accent);">${counts[k] === 0 ? '—' : counts[k]}</td></tr>`).join('');
+
+    }).catch(()=>{
+      document.getElementById('new-requests').textContent='—';
+      document.getElementById('total-clients').textContent='—';
+      document.getElementById('recent-requests').innerHTML='<tr><td colspan="3" style="color:var(--gray-4);text-align:center;padding:2rem;">Connect backend to load data</td></tr>';
+      document.getElementById('services-breakdown').innerHTML='<tr><td colspan="2" style="color:var(--gray-4);text-align:center;">Data offline</td></tr>';
+    });
+  </script>
+</body>
+</html>

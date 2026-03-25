@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — BhAAi Fans Digital AA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+  <style>
+    .auth-container {
+      max-width: 450px;
+      margin: 10rem auto 5rem;
+      padding: 3rem;
+      background: var(--gray-1);
+      border-radius: 4px;
+      border: 1px solid var(--gray-2);
+    }
+    .auth-container h1 { text-align: center; margin-bottom: 2rem; }
+    .auth-form .form-group { margin-bottom: 1.5rem; }
+    .auth-form label { display: block; margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-3); text-transform: uppercase; }
+    .auth-form input { width: 100%; padding: 1rem; border: 1px solid var(--gray-2); background: transparent; color: var(--text-light); border-radius: 4px; font-family: var(--font-body); outline: none; transition: border-color 0.3s ease; }
+    .auth-form input:focus { border-color: var(--accent); }
+    .auth-btn { width: 100%; margin-top: 1rem; text-align: center; }
+    .auth-links { margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--gray-3); }
+    .auth-links a { color: var(--accent); text-decoration: none; }
+    #auth-error { color: #ff4444; margin-bottom: 1rem; font-size: 0.9rem; text-align: center; display: none; }
+  </style>
+</head>
+<body>
+  <!-- Nav (simplified) -->
+  <nav>
+    <a href="/" class="nav-logo">BhAAi Fans<span>.</span></a>
+    <a href="/contact.html" class="nav-cta">Get in touch</a>
+  </nav>
+
+  <div class="auth-container">
+    <h1>Welcome Back</h1>
+    <div id="auth-error"></div>
+    <form id="login-form" class="auth-form">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="••••••••" />
+      </div>
+      <button type="submit" class="btn-primary auth-btn">Log In</button>
+    </form>
+    <div class="auth-links">
+      Don't have an account? <a href="/register.html">Create one</a>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorDiv = document.getElementById('auth-error');
+      
+      try {
+        const res = await fetch('/auth/user/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        
+        if (res.ok && data.success) {
+          // Redirect to contact page if there is a 'redirect' query param, else to home
+          const urlParams = new URLSearchParams(window.location.search);
+          const redirect = urlParams.get('redirect') || '/contact.html';
+          window.location.href = redirect;
+        } else {
+          errorDiv.textContent = data.error || 'Login failed';
+          errorDiv.style.display = 'block';
+        }
+      } catch (err) {
+        errorDiv.textContent = 'Network error occurred';
+        errorDiv.style.display = 'block';
+      }
+    });
+  </script>
+  <script>
+    // Authentication Check and Dynamic Navbar Update
+    fetch('/auth/me')
+      .then(res => res.json())
+      .then(data => {
+        const btn = document.getElementById('nav-login-btn');
+        if (data.authenticated) {
+          if (btn) {
+            btn.textContent = 'Logout';
+            btn.href = (data.type === 'admin') ? '/auth/logout' : '/auth/user/logout';
+          }
+        }
+      });
+  </script>
+</body>
+</html>
