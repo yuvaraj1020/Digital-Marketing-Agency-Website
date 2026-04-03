@@ -1,9 +1,9 @@
 from flask import Blueprint, send_from_directory, session, redirect, render_template, request
 import os
 
-ADMIN_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'admin-dashboard'))
+ADMIN_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'frontend', 'admin-dashboard'))
 admin_bp = Blueprint('admin', __name__, template_folder=ADMIN_DIR)
-ADMIN_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'admin-dashboard'))
+ADMIN_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'frontend', 'admin-dashboard'))
 
 @admin_bp.before_request
 def require_admin():
