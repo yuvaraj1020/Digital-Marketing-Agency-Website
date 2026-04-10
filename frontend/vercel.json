@@ -1,0 +1,17 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://YOUR_BACKEND_URL.onrender.com/api/:path*"
+    },
+    {
+      "source": "/auth/:path*",
+      "destination": "https://YOUR_BACKEND_URL.onrender.com/auth/:path*"
+    },
+    {
+      "source": "/admin/api/:path*",
+      "destination": "https://YOUR_BACKEND_URL.onrender.com/admin/api/:path*"
+    }
+  ],
+  "cleanUrls": true
+}

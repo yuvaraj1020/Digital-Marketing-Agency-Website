@@ -9,7 +9,7 @@ load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
 FRONTEND_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend'))
 
-app = Flask(__name__, static_folder=os.path.join(FRONTEND_DIR, 'static'), static_url_path='/static', template_folder=os.path.join(FRONTEND_DIR, 'pages'))
+app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'dev-secret')
 
 from datetime import timedelta
@@ -28,21 +28,8 @@ from routes.admin import admin_bp
 app.register_blueprint(public_bp)
 app.register_blueprint(leads_bp, url_prefix='/api')
 app.register_blueprint(auth_bp, url_prefix='/auth')
-app.register_blueprint(admin_bp, url_prefix='/admin')
 
-from flask import render_template
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/<path:filename>.html')
-def serve_html(filename):
-    file_path = os.path.join(FRONTEND_DIR, 'pages', f"{filename}.html")
-    if not os.path.exists(file_path):
-        from flask import abort
-        abort(404)
-    return render_template(f"{filename}.html")
 
 
 if __name__ == '__main__':

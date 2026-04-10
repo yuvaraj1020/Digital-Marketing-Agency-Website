@@ -11,8 +11,8 @@ ADMIN_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),'..','..','ad
 
 @auth_bp.route('/login', methods=['GET'])
 def login_page():
-    if 'agent_id' in session: return redirect('/admin/dashboard')
-    return render_template('admin-login.html')
+    if 'agent_id' in session: return redirect('/admin-dashboard/dashboard.html')
+    return redirect('/admin-login.html')
 
 @auth_bp.route('/login', methods=['POST'])
 def login():
@@ -31,7 +31,7 @@ def login():
 @auth_bp.route('/logout')
 def logout():
     session.clear()
-    return redirect('/auth/login')
+    return redirect('/admin-login.html')
 
 @auth_bp.route('/me')
 def me():
@@ -98,7 +98,7 @@ def user_logout():
     session.pop('user_id', None)
     session.pop('user_name', None)
     session.pop('user_email', None)
-    return redirect('/')
+    return redirect('/index.html')
 
 @auth_bp.route('/forgot-password', methods=['POST'])
 def forgot_password():

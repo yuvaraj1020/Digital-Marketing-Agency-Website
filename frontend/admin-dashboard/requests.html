@@ -7,7 +7,10 @@
   <style>
     :root{--black:#0a0a0a;--white:#f5f0e8;--accent:#c8ff00;--gray-1:#1a1a1a;--gray-2:#2a2a2a;--gray-3:#444;--gray-4:#888;}
     *{box-sizing:border-box;margin:0;padding:0;}
-    body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;display:flex;min-height:100vh;}
+    body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;display:flex;min-height:100vh;cursor:none;}
+    .cursor{width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s;}
+    .cursor-follower{width:36px;height:36px;border:1px solid rgba(200,255,0,0.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.15s ease,opacity 0.2s;}
+    body:hover .cursor, body:hover .cursor-follower { opacity: 1; }
     .sidebar{width:220px;background:var(--gray-1);border-right:1px solid rgba(245,240,232,0.08);padding:2rem 1.5rem;display:flex;flex-direction:column;gap:0.4rem;flex-shrink:0;}
     .sidebar-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--white);margin-bottom:2rem;}
     .sidebar-logo span{color:var(--accent);}
@@ -29,6 +32,8 @@
   </style>
 </head>
 <body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
   <aside class="sidebar">
     <div class="sidebar-logo">BhAAi<span>.</span></div>
     <a href="dashboard.html">Dashboard</a>
@@ -49,7 +54,10 @@
   </main>
   <script>
     function loadLeads() {
-      fetch('/api/leads').then(r=>r.json()).then(data=>{
+      fetch('/api/leads').then(r=>{
+        if(r.status === 401) window.location.href = '/admin-login.html';
+        return r.json();
+      }).then(data=>{
         const tbody=document.getElementById('requests-table');
         const leads = data.leads || [];
         if(!leads.length){tbody.innerHTML='<tr><td colspan="7" style="color:var(--gray-4);text-align:center;padding:3rem;">No requests yet</td></tr>';return;}
@@ -68,6 +76,19 @@
     }
     
     loadLeads();
+  </script>
+  <script>
+    const cursor=document.querySelector('.cursor'),follower=document.querySelector('.cursor-follower');
+    if(cursor&&follower){
+      let mx=0,my=0,fx=0,fy=0;
+      document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+      const anim=()=>{fx+=(mx-fx)*0.12;fy+=(my-fy)*0.12;follower.style.left=fx+'px';follower.style.top=fy+'px';requestAnimationFrame(anim);};
+      anim();
+      document.querySelectorAll('a, button, input').forEach(el=>{
+        el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2.5)';follower.style.opacity='0.5';});
+        el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';follower.style.opacity='1';});
+      });
+    }
   </script>
 </body>
 </html>

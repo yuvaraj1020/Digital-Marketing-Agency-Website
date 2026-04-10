@@ -3,75 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Host Secure Login — BhAAi Fans Digital AA</title>
+  <title>Create Account — BhAAi Fans Digital AA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/responsive.css" />
   <style>
     .auth-container {
       max-width: 450px;
       margin: 10rem auto 5rem;
       padding: 3rem;
-      background: #111;
+      background: var(--gray-1);
       border-radius: 4px;
-      border: 1px solid var(--accent);
-      box-shadow: 0 0 20px rgba(200, 255, 0, 0.1);
+      border: 1px solid var(--gray-2);
     }
-    .auth-container h1 { text-align: center; margin-bottom: 2rem; color: var(--accent); }
+    .auth-container h1 { text-align: center; margin-bottom: 2rem; }
     .auth-form .form-group { margin-bottom: 1.5rem; }
     .auth-form label { display: block; margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--gray-3); text-transform: uppercase; }
     .auth-form input { width: 100%; padding: 1rem; border: 1px solid var(--gray-2); background: transparent; color: var(--text-light); border-radius: 4px; font-family: var(--font-body); outline: none; transition: border-color 0.3s ease; }
     .auth-form input:focus { border-color: var(--accent); }
     .auth-btn { width: 100%; margin-top: 1rem; text-align: center; }
+    .auth-links { margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--gray-3); }
+    .auth-links a { color: var(--accent); text-decoration: none; }
     #auth-error { color: #ff4444; margin-bottom: 1rem; font-size: 0.9rem; text-align: center; display: none; }
   </style>
 </head>
 <body>
+  <!-- Nav (simplified) -->
   <nav>
     <a href="/" class="nav-logo">BhAAi Fans<span>.</span></a>
+    <a href="/contact.html" class="nav-cta">Get in touch</a>
   </nav>
 
   <div class="auth-container">
-    <h1>HOST PORTAL</h1>
+    <h1>Create an Account</h1>
     <div id="auth-error"></div>
-    <form id="login-form" class="auth-form">
+    <form id="register-form" class="auth-form">
       <div class="form-group">
-        <label for="email">Admin Email</label>
-        <input type="email" id="email" name="email" required placeholder="admin@bhaai.com" />
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required placeholder="John Doe" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required placeholder="••••••••" />
+        <input type="password" id="password" name="password" required placeholder="••••••••" minlength="6" />
       </div>
-      <button type="submit" class="btn-primary auth-btn">Access Backend</button>
+      <button type="submit" class="btn-primary auth-btn">Sign Up</button>
     </form>
+    <div class="auth-links">
+      Already have an account? <a href="/login.html">Log in</a>
+    </div>
   </div>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="/static/js/main.js"></script>
   <script>
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
       e.preventDefault();
+      const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const errorDiv = document.getElementById('auth-error');
       
       try {
-        const res = await fetch('/auth/login', {
+        const res = await fetch('/auth/user/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
+          body: JSON.stringify({ name, email, password })
         });
         const data = await res.json();
         
         if (res.ok && data.success) {
-          window.location.href = data.redirect || '/admin/dashboard';
+          // Redirect to contact page after registration (which logs them in)
+          window.location.href = '/contact.html';
         } else {
-          errorDiv.textContent = data.error || 'Authentication Failed';
+          errorDiv.textContent = data.error || 'Registration failed';
           errorDiv.style.display = 'block';
         }
       } catch (err) {
-        errorDiv.textContent = 'Network offline';
+        errorDiv.textContent = 'Network error occurred';
         errorDiv.style.display = 'block';
       }
     });

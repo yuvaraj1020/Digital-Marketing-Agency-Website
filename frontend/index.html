@@ -7,8 +7,8 @@
   <meta name="description" content="BhAAi Fans Digital AA — We craft stunning portfolios and ATS-optimised resumes that get you noticed and hired faster." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/responsive.css" />
 </head>
 <body>
   <div class="cursor"></div>
@@ -188,7 +188,7 @@
     <h2 class="section-title reveal reveal-delay-1">Who we are.</h2>
     <div class="about-grid">
       <div class="about-image-wrap reveal">
-        <img src="{{ url_for('static', filename='images/team.jpg') }}" alt="BhAAi Fans Digital AA Team" onerror="this.style.background='#1a1a1a';this.style.aspectRatio='4/5';this.removeAttribute('src');" />
+        <img src="/static/images/team.jpg" alt="BhAAi Fans Digital AA Team" onerror="this.style.background='#1a1a1a';this.style.aspectRatio='4/5';this.removeAttribute('src');" />
       </div>
       <div class="about-text reveal reveal-delay-1">
         <h3>We're not here to blend in. We craft portfolios and resumes that get people hired.</h3>
@@ -319,7 +319,7 @@
     <h2 class="section-title reveal reveal-delay-1">Selected Works.</h2>
     <div class="portfolio-grid reveal">
       <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio1.jpg') }}" alt="Resume Builder Platform" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio1.jpg" alt="Resume Builder Platform" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Resume Builder Platform</h3>
           <p>Slick dashboard design for resume creation and templates built for hiring success.</p>
@@ -328,7 +328,7 @@
         </div>
       </div>
       <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio2.jpg') }}" alt="Portfolio Website" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio2.jpg" alt="Portfolio Website" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Portfolio Website</h3>
           <p>Modern personal brand website with polished UX and mobile-first presentation.</p>
@@ -337,7 +337,7 @@
         </div>
       </div>
       <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio3.jpg') }}" alt="Social Media Campaign" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio3.jpg" alt="Social Media Campaign" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Social Media Campaign</h3>
           <p>Eye-catching creatives and engagement-first content built for social growth.</p>
@@ -346,7 +346,7 @@
         </div>
       </div>
       <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio4.jpg') }}" alt="Digital Marketing Campaign" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio4.jpg" alt="Digital Marketing Campaign" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Digital Marketing Campaign</h3>
           <p>Performance-driven ad funnels and campaigns that generate measurable ROI.</p>
@@ -355,7 +355,7 @@
         </div>
       </div>
       <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio5.jpg') }}" alt="Brand Identity Design" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio5.jpg" alt="Brand Identity Design" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Brand Identity Design</h3>
           <p>Premium brand visuals, logos, and marketing assets with a bold creative direction.</p>
@@ -364,7 +364,7 @@
         </div>
       </div>
       <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio6.jpg') }}" alt="Growth Strategy Plan" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio6.jpg" alt="Growth Strategy Plan" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Growth Strategy Plan</h3>
           <p>Conversion-led digital strategy built to increase traffic, leads, and revenue.</p>
@@ -552,8 +552,8 @@
     </div>
   </footer>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/animations.js"></script>
   <script>
     fetch('/api/quotes/random')
       .then(r => r.json())

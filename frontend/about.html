@@ -6,8 +6,8 @@
   <title>Studio — BhAAi Fans Digital AA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/responsive.css" />
 </head>
 <body>
   <div class="cursor"></div>
@@ -51,7 +51,7 @@
   <section>
     <div class="about-grid">
       <div class="about-image-wrap reveal">
-        <img src="{{ url_for('static', filename='images/team.jpg') }}" alt="Team" onerror="this.style.background='#1a1a1a';this.style.minHeight='400px';this.removeAttribute('src');" />
+        <img src="/static/images/team.jpg" alt="Team" onerror="this.style.background='#1a1a1a';this.style.minHeight='400px';this.removeAttribute('src');" />
       </div>
       <div class="about-text reveal reveal-delay-1">
         <h3>We're not just an agency. We're your growth partner.</h3>
@@ -166,8 +166,8 @@
     </div>
   </footer>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/animations.js"></script>
   <script>
     // Authentication Check and Dynamic Navbar Update
     fetch('/auth/me')

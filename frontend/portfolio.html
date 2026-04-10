@@ -6,8 +6,8 @@
   <title>Portfolio — BhAAi Fans Digital AA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/responsive.css" />
 </head>
 <body>
   <div class="cursor"></div>
@@ -62,42 +62,42 @@
   <section style="padding-top:2rem;">
     <div class="portfolio-grid" id="portfolio-grid">
       <div class="portfolio-item reveal" data-category="web">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio1.jpg') }}" alt="Project 1" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio1.jpg" alt="Project 1" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Resume Builder Platform</h3>
           <div class="portfolio-tags"><span>Web Development</span><span>UI Design</span></div>
         </div>
       </div>
       <div class="portfolio-item reveal reveal-delay-1" data-category="web">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio2.jpg') }}" alt="Project 2" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio2.jpg" alt="Project 2" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Portfolio Website</h3>
           <div class="portfolio-tags"><span>Portfolio</span><span>Personal Brand</span></div>
         </div>
       </div>
       <div class="portfolio-item reveal" data-category="social">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio3.jpg') }}" alt="Project 3" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio3.jpg" alt="Project 3" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Social Media Campaign</h3>
           <div class="portfolio-tags"><span>Social Media</span><span>Marketing</span></div>
         </div>
       </div>
       <div class="portfolio-item reveal reveal-delay-1" data-category="social">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio4.jpg') }}" alt="Project 4" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio4.jpg" alt="Project 4" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Digital Marketing Campaign</h3>
           <div class="portfolio-tags"><span>Google Ads</span><span>Meta Ads</span></div>
         </div>
       </div>
       <div class="portfolio-item reveal" data-category="brand">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio5.jpg') }}" alt="Project 5" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio5.jpg" alt="Project 5" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Brand Identity Design</h3>
           <div class="portfolio-tags"><span>Graphic Design</span><span>Branding</span></div>
         </div>
       </div>
       <div class="portfolio-item reveal reveal-delay-1" data-category="brand">
-        <img src="{{ url_for('static', filename='images/portfolio/portfolio6.jpg') }}" alt="Project 6" onerror="this.style.display='none';" />
+        <img src="/static/images/portfolio/portfolio6.jpg" alt="Project 6" onerror="this.style.display='none';" />
         <div class="portfolio-overlay">
           <h3>Growth Strategy Plan</h3>
           <div class="portfolio-tags"><span>Marketing Strategy</span><span>Consulting</span></div>
@@ -155,8 +155,8 @@
     </div>
   </footer>
 
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/animations.js"></script>
   <script>
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
