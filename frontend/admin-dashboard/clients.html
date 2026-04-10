@@ -55,20 +55,47 @@
       </table>
     </div>
   </main>
-  <script>
-    fetch('/api/leads').then(r=>{
-        if(r.status === 401) window.location.href = '/admin-login.html';
-        return r.json();
-    }).then(data=>{
-      const tbody=document.getElementById('clients-table');
-      const leads = data.leads || [];
-      if(!leads.length){tbody.innerHTML='<tr><td colspan="6" style="color:var(--gray-4);text-align:center;padding:3rem;">No clients yet</td></tr>';return;}
-      tbody.innerHTML=leads.map((c,i)=>`<tr><td style="color:var(--gray-4);">${i+1}</td><td>${c.name}</td><td style="color:var(--gray-4);">${c.email}</td><td>${c.company||'—'}</td><td><span class="badge">${c.service_interested||'—'}</span></td><td style="color:var(--gray-4);">${c.created_at?.split(' ')[0]||'—'}</td></tr>`).join('');
-      document.getElementById('search').addEventListener('input',e=>{
-        const q=e.target.value.toLowerCase();
-        tbody.querySelectorAll('tr').forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(q)?'':'none';});
+  <script type="module">
+    import { db, collection, getDocs, query, orderBy } from "/static/js/firebase-config.js";
+
+    const tbody = document.getElementById('clients-table');
+    tbody.innerHTML = '<tr><td colspan="6" style="color:var(--gray-4);text-align:center;padding:3rem;">Loading from cloud...</td></tr>';
+
+    try {
+      const q = query(collection(db, "leads"), orderBy("created_at", "desc"));
+      const querySnapshot = await getDocs(q);
+      
+      const leads = [];
+      querySnapshot.forEach((doc) => {
+        leads.push({ id: doc.id, ...doc.data() });
       });
-    }).catch(()=>{});
+
+      if (!leads.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="color:var(--gray-4);text-align:center;padding:3rem;">No clients yet</td></tr>';
+      } else {
+        tbody.innerHTML = leads.map((c, i) => `
+          <tr>
+            <td style="color:var(--gray-4);">${i + 1}</td>
+            <td>${c.name}</td>
+            <td style="color:var(--gray-4);">${c.email}</td>
+            <td>${c.company || '—'}</td>
+            <td><span class="badge">${c.service_interested || '—'}</span></td>
+            <td style="color:var(--gray-4);">${c.created_at?.toDate().toLocaleDateString('en-IN') || '—'}</td>
+          </tr>
+        `).join('');
+      }
+
+      document.getElementById('search').addEventListener('input', e => {
+        const q = e.target.value.toLowerCase();
+        tbody.querySelectorAll('tr').forEach(r => {
+          r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+        });
+      });
+
+    } catch (error) {
+      console.error("Firebase error:", error);
+      tbody.innerHTML = '<tr><td colspan="6" style="color:var(--gray-4);text-align:center;padding:3rem;color:#ff5050;">Cloud connection failed</td></tr>';
+    }
   </script>
   <script>
     const cursor=document.querySelector('.cursor'),follower=document.querySelector('.cursor-follower');

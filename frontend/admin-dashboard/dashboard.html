@@ -84,45 +84,69 @@
       </div>
     </div>
   </main>
-  <script src="dashboard.js"></script>
-  <script>
+  <script type="module">
+    import { db, collection, getDocs, query, orderBy, limit } from "/static/js/firebase-config.js";
+
     document.getElementById('date-display').textContent = new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-    fetch('/api/leads').then(r => {
-        if(r.status === 401) window.location.href = '/admin-login.html';
-        return r.json();
-    }).then(data=>{
-      const leads = data.leads || [];
-      document.getElementById('new-requests').textContent = leads.filter(r=>r.status==='New').length;
-      document.getElementById('total-clients').textContent = leads.length;
-      const tbody = document.getElementById('recent-requests');
-      const recent = leads.slice(0,5);
-      if(!recent.length){tbody.innerHTML='<tr><td colspan="3" style="color:var(--gray-4);text-align:center;padding:2rem;">No requests yet</td></tr>';} else {
-          tbody.innerHTML = recent.map(r=>`<tr><td>${r.name}</td><td>${r.service_interested}</td><td><span class="badge badge-${r.status==='New'?'new':'progress'}">${r.status}</span></td></tr>`).join('');
+
+    async function loadStats() {
+      try {
+        const querySnapshot = await getDocs(collection(db, "leads"));
+        const leads = [];
+        querySnapshot.forEach((doc) => {
+          leads.push({ id: doc.id, ...doc.data() });
+        });
+
+        // Display Totals
+        document.getElementById('total-clients').textContent = leads.length;
+        document.getElementById('new-requests').textContent = leads.filter(r => r.status === 'New').length;
+
+        // Populate Recent Table
+        const tbody = document.getElementById('recent-requests');
+        const recent = [...leads].sort((a,b) => (b.created_at?.toMillis() || 0) - (a.created_at?.toMillis() || 0)).slice(0, 5);
+        
+        if (!recent.length) {
+          tbody.innerHTML = '<tr><td colspan="3" style="color:var(--gray-4);text-align:center;padding:2rem;">No requests yet</td></tr>';
+        } else {
+          tbody.innerHTML = recent.map(r => `
+            <tr>
+              <td>${r.name}</td>
+              <td>${r.service_interested}</td>
+              <td><span class="badge badge-${r.status === 'New' ? 'new' : 'progress'}">${r.status}</span></td>
+            </tr>`).join('');
+        }
+
+        // Aggregate Services
+        const counts = { "Web Development": 0, "Social Media Marketing": 0, "Ads Management": 0, "Video Editing": 0, "Graphic Design": 0, "Marketing Strategy": 0, "Resume Builder": 0, "Personal Portfolio": 0 };
+        leads.forEach(r => {
+          let sc = r.service_interested;
+          // Normalize service names
+          if (sc === 'web') sc = 'Web Development';
+          if (sc === 'social') sc = 'Social Media Marketing';
+          if (sc === 'ads') sc = 'Ads Management';
+          if (sc === 'video') sc = 'Video Editing';
+          if (sc === 'graphic') sc = 'Graphic Design';
+          if (sc === 'strategy') sc = 'Marketing Strategy';
+          if (sc === 'resume') sc = 'Resume Builder';
+          if (sc === 'portfolio') sc = 'Personal Portfolio';
+          if (counts[sc] !== undefined) counts[sc]++;
+        });
+
+        document.getElementById('services-breakdown').innerHTML = Object.keys(counts)
+          .map(k => `<tr><td>${k}</td><td style="color:var(--accent);">${counts[k] === 0 ? '—' : counts[k]}</td></tr>`)
+          .join('');
+
+        // Progress change indicator (demo static for now)
+        document.querySelectorAll('.stat-card .change').forEach(el => el.textContent = 'Up to date');
+
+      } catch (error) {
+        console.error("Firebase Dashboard Error:", error);
+        document.getElementById('total-clients').textContent = 'Error';
+        document.getElementById('recent-requests').innerHTML = '<tr><td colspan="3" style="color:var(--gray-4);text-align:center;padding:2rem;">Failed to connect to Firebase</td></tr>';
       }
+    }
 
-      // Aggregate services
-      const counts = {"Web Development":0, "Social Media Marketing":0, "Ads Management":0, "Video Editing":0, "Graphic Design":0, "Marketing Strategy":0, "Resume Builder":0, "Personal Portfolio":0};
-      leads.forEach(r => {
-        let sc = r.service_interested;
-        // Normalize any test data
-        if(sc==='web') sc='Web Development';
-        if(sc==='social') sc='Social Media Marketing';
-        if(sc==='ads') sc='Ads Management';
-        if(sc==='video') sc='Video Editing';
-        if(sc==='graphic') sc='Graphic Design';
-        if(sc==='strategy') sc='Marketing Strategy';
-        if(sc==='resume') sc='Resume Builder';
-        if(sc==='portfolio') sc='Personal Portfolio';
-        if(counts[sc] !== undefined) counts[sc]++;
-      });
-      document.getElementById('services-breakdown').innerHTML = Object.keys(counts).map(k=>`<tr><td>${k}</td><td style="color:var(--accent);">${counts[k] === 0 ? '—' : counts[k]}</td></tr>`).join('');
-
-    }).catch(()=>{
-      document.getElementById('new-requests').textContent='—';
-      document.getElementById('total-clients').textContent='—';
-      document.getElementById('recent-requests').innerHTML='<tr><td colspan="3" style="color:var(--gray-4);text-align:center;padding:2rem;">Connect backend to load data</td></tr>';
-      document.getElementById('services-breakdown').innerHTML='<tr><td colspan="2" style="color:var(--gray-4);text-align:center;">Data offline</td></tr>';
-    });
+    loadStats();
   </script>
   <script>
     const cursor=document.querySelector('.cursor'),follower=document.querySelector('.cursor-follower');

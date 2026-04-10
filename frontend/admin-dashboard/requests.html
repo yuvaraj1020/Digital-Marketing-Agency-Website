@@ -52,29 +52,58 @@
       </table>
     </div>
   </main>
-  <script>
-    function loadLeads() {
-      fetch('/api/leads').then(r=>{
-        if(r.status === 401) window.location.href = '/admin-login.html';
-        return r.json();
-      }).then(data=>{
-        const tbody=document.getElementById('requests-table');
-        const leads = data.leads || [];
-        if(!leads.length){tbody.innerHTML='<tr><td colspan="7" style="color:var(--gray-4);text-align:center;padding:3rem;">No requests yet</td></tr>';return;}
-        tbody.innerHTML=leads.map((r,i)=>`<tr><td style="color:var(--gray-4);">${i+1}</td><td>${r.name}</td><td style="color:var(--gray-4);">${r.email}</td><td>${r.service_interested}</td><td><span class="badge badge-${r.status==='New'?'new':'progress'}">${r.status}</span></td><td style="color:var(--gray-4);">${r.created_at?.split(' ')[0]||'—'}</td><td><button onclick="deleteLead(${r.id})" style="background:transparent;border:none;color:#ff5050;cursor:pointer;font-family:var(--font-mono);text-transform:uppercase;font-size:0.6rem;">Delete</button></td></tr>`).join('');
-      }).catch(()=>{});
-    }
-    
-    function deleteLead(id) {
-      if(!confirm('Are you sure you want to delete this lead?')) return;
-      fetch('/api/leads/' + id, {method: 'DELETE'})
-        .then(r=>r.json())
-        .then(res => {
-          if(res.success) loadLeads();
-          else alert(res.error || 'Failed to delete');
+  <script type="module">
+    import { db, collection, getDocs, query, orderBy, deleteDoc, doc } from "/static/js/firebase-config.js";
+
+    async function loadLeads() {
+      const tbody = document.getElementById('requests-table');
+      tbody.innerHTML = '<tr><td colspan="7" style="color:var(--gray-4);text-align:center;padding:3rem;">Fetching from cloud...</td></tr>';
+      
+      try {
+        const q = query(collection(db, "leads"), orderBy("created_at", "desc"));
+        const querySnapshot = await getDocs(q);
+        
+        const leads = [];
+        querySnapshot.forEach((doc) => {
+          leads.push({ id: doc.id, ...doc.data() });
         });
+
+        if (leads.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" style="color:var(--gray-4);text-align:center;padding:3rem;">No requests yet</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = leads.map((r, i) => `
+          <tr>
+            <td style="color:var(--gray-4);">${i + 1}</td>
+            <td>${r.name}</td>
+            <td style="color:var(--gray-4);">${r.email}</td>
+            <td>${r.service_interested}</td>
+            <td><span class="badge badge-${r.status === 'New' ? 'new' : 'progress'}">${r.status}</span></td>
+            <td style="color:var(--gray-4);">${r.created_at?.toDate().toLocaleDateString('en-IN') || '—'}</td>
+            <td>
+              <button class="delete-btn" data-id="${r.id}" style="background:transparent;border:none;color:#ff5050;cursor:pointer;font-family:var(--font-mono);text-transform:uppercase;font-size:0.6rem;">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+
+        // Attach delete events
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+          btn.addEventListener('click', async (e) => {
+            const id = e.target.getAttribute('data-id');
+            if (confirm('Are you sure you want to delete this lead?')) {
+              await deleteDoc(doc(db, "leads", id));
+              loadLeads();
+            }
+          });
+        });
+
+      } catch (error) {
+        console.error("Error loading leads:", error);
+        tbody.innerHTML = '<tr><td colspan="7" style="color:var(--gray-4);text-align:center;padding:3rem;color:#ff5050;">Error connecting to Firebase</td></tr>';
+      }
     }
-    
+
     loadLeads();
   </script>
   <script>

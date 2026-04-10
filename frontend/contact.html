@@ -200,41 +200,56 @@
   </footer>
 
   <script src="/static/js/main.js"></script>
-  <script src="/static/js/form.js"></script>
   <script src="/static/js/animations.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      try {
-        const res = await fetch('/auth/me');
-        if (!res.ok) {
-          window.location.href = '/login.html?redirect=/contact.html';
-        }
-      } catch (e) {
-        console.error("Auth check failed.", e);
-      }
-    });
-  </script>
-  <script>
-    // Strict Auth Redirection for Contact Form
-    fetch('/auth/me').then(res => res.json()).then(data => {
-      if (!data.authenticated || data.type === 'admin') {
-        window.location.href = 'login.html?redirect=contact.html';
-      }
-    });
-  </script>
-  <script>
-    // Authentication Check and Dynamic Navbar Update
-    fetch('/auth/me')
-      .then(res => res.json())
-      .then(data => {
-        const btn = document.getElementById('nav-login-btn');
-        if (data.authenticated) {
-          if (btn) {
-            btn.textContent = 'Logout';
-            btn.href = (data.type === 'admin') ? '/auth/logout' : '/auth/user/logout';
-          }
+  
+  <script type="module">
+    import { db, collection, addDoc, serverTimestamp } from "/static/js/firebase-config.js";
+
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+
+        const formData = {
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          company: document.getElementById('company').value,
+          service_interested: document.getElementById('service').value,
+          budget: document.getElementById('budget').value,
+          message: document.getElementById('message').value,
+          status: 'New',
+          created_at: serverTimestamp()
+        };
+
+        try {
+          // Save to Firestore "leads" collection
+          await addDoc(collection(db, "leads"), formData);
+          
+          // Show success message
+          contactForm.parentElement.innerHTML = `
+            <div class="form-success reveal">
+              <div class="success-icon">✓</div>
+              <h3>Message Sent.</h3>
+              <p>Thanks ${formData.name}, we've received your request and will get back to you within 24 hours.</p>
+              <br><br>
+              <a href="index.html" class="btn-ghost">Return Home</a>
+            </div>
+          `;
+        } catch (error) {
+          console.error("Error adding document: ", error);
+          alert("Error sending message. Please try again or email us directly.");
+          btn.textContent = originalText;
+          btn.disabled = false;
         }
       });
+    }
   </script>
 </body>
 </html>
